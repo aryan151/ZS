@@ -1,0 +1,28 @@
+/* TODO Add site wide styles */
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: url('./font/Montserrat/Montserrat-Regular.ttf') format('truetype');
+}
+* {
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+}
+body{
+    font-family: 'Montserrat-Regular', sans-serif;
+    margin: 0;
+}
+.openboard-main-layer{
+    display: flex;
+    height: 100vh;
+}
+
+.openboard-root-page{
+    display: flex;
+    flex: 1;
+    height: 100%;
+    flex-direction: column;
+    min-width: 920px;
+    overflow: scroll;
+    background-color: #F9F8F8;
+}
