@@ -21,6 +21,7 @@ import { AiOutlineDollarCircle } from "react-icons/ai";
 import { SiBankofamerica } from "react-icons/si"
 import { GiEuropeanFlag } from "react-icons/gi";
 import { IoLogOutOutline } from "react-icons/io5";
+import { logout } from "../../store/session";
 
 const SideBar = ({ show, toggle, toggledark }) => {
 	const dispatch = useDispatch();
@@ -55,6 +56,12 @@ const SideBar = ({ show, toggle, toggledark }) => {
 			toDo.push(changearray[project][1].project_id)
 		}   
 	} 
+
+	
+		const onLogout = async (e) => {
+		  await dispatch(logout());
+		}; 
+
 	return (
 		<nav className={sidebarClass}> 
 			 
@@ -121,7 +128,7 @@ const SideBar = ({ show, toggle, toggledark }) => {
 					</div>  
 				</div>
 				<div activeClassName="sidebar-active"> 
-					<div id="sidebar-link"  > 
+					<div id="sidebar-link"  onClick={onLogout}>  
 						<IoLogOutOutline size="1.5em"  className={'sidebarlogotopleft'} /> <span id="sidebar-link-text">{theme === 'usa' ? 'Logout' : 'Déconnexion'}  </span> 
 					</div> 
 				</div>

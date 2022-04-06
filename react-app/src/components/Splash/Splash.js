@@ -56,7 +56,7 @@ const Splash = () => {
 			<div class="splash-background-container">
 				<div class={headerStyle}>
 					<header class="splash-header">
-						<div id="splash-header-logo">
+						<div id="splash-action-links">
 							<p id="splash-log-in">Z.S</p>
 						</div>  
 						<div class="splash-action-links">

@@ -11,7 +11,9 @@
  
 
 .login-main-div{
-    background-color: #F5F8F9;
+    background-size: cover;
+    background-image: url('../../images/ZSHOME.jpeg');
+    transition: background-image 200ms ease-in-out;
     display: flex;
     min-height: 100vh;
     justify-content: center;
@@ -93,5 +95,5 @@
 
 #login-no-account a{
     text-decoration: none;
-    color: #17A9F5
+    color:red; 
 }
