@@ -26,7 +26,7 @@ body{
     height: 100%;
     flex-direction: column;
     min-width: 920px;
-    overflow: scroll;
+    overflow: hidden;
     /* background-color: #c6c6c6; */
     padding-bottom: none;
    
