@@ -28,7 +28,7 @@ const RootPage = ({show, toggle, page}) => {
     }
 	return (
 		<div
-			className={`openboard-root-page ${
+			className={`zs-root-page ${
 				page === "home" ? "root-home-page-background" : null
 			}`}
 		>

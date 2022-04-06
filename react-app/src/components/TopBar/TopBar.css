@@ -1,4 +1,4 @@
-.openboard-topbar{
+.zs-topbar{
     align-items: center;
     box-sizing: border-box;
     display: flex;
@@ -9,7 +9,7 @@
 	top: 0;
     z-index: 8;
 }
-.openboard-topbar-home-scroll{
+.zs-topbar-home-scroll{
     background-color: white;
 }
 
@@ -128,7 +128,7 @@
     color: white;
     font-size: 24px;
 }
-.openboard-topbar-project{
+.zs-topbar-project{
     align-items: center;
     box-sizing: border-box;
     display: flex;

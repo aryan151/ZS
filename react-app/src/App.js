@@ -66,14 +66,14 @@ function App() {
 				<Route path="/" exact={true}>
 					{!sessionUser && <Splash />}
 					{sessionUser && (
-						<div className="openboard-main-layer">
+						<div className="zs-main-layer">
 							<SideBar show={showSidebar} toggle={toggleSidebar} toggledark={toggleDark} />
 							<RootPage show={showSidebar} toggle={toggleSidebar} page="home"/>
 						</div>
 					)}
 				</Route>
 				<ProtectedRoute path="/projects/:projectId">
-					<div className="openboard-main-layer">
+					<div className="zs-main-layer">
 						<SideBar show={showSidebar} toggle={toggleSidebar} />
 						<RootPage show={showSidebar} toggle={toggleSidebar} page="single-project" />
 					</div>

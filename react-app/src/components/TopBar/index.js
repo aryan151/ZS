@@ -30,7 +30,7 @@ const TopBar = ({ show, toggle, page, project }) => {
 
     const executeDelete = async(e) => {
         e.preventDefault();
-        await dispatch(deleteProject(project.id));
+        await dispatch(deleteProject(project.id)); 
         await dispatch(authenticate())
         return history.push('/')
 
@@ -40,15 +40,15 @@ const TopBar = ({ show, toggle, page, project }) => {
 		? "topbar-expand-sidebar-hidden"
 		: "topbar-expand-sidebar";
 
-	const [headerStyle, setHeaderStyle] = useState("openboard-topbar-home");
+	const [headerStyle, setHeaderStyle] = useState("zs-topbar-home");
 	const changeTopBarStyle = (event) => {
-		const root = document.getElementsByClassName("openboard-root-page")[0];
+		const root = document.getElementsByClassName("zs-root-page")[0];
 
 		if (root.scrollY > 0) {
 
-			setHeaderStyle("openboard-topbar-home-scroll");
+			setHeaderStyle("zs-topbar-home-scroll");
 		} else {
-			setHeaderStyle("openboard-topbar-home");
+			setHeaderStyle("zs-topbar-home");
 		}
 	};
 
@@ -81,7 +81,7 @@ const TopBar = ({ show, toggle, page, project }) => {
 	if (page === "home") {
 		return (
 			<div
-				className={`openboard-topbar ${page === "home" ? headerStyle : null}`}
+				className={`zs-topbar ${page === "home" ? headerStyle : null}`}
 			>
 				<div className={toggleButtonClassName}> 
 					<div id="topbar-toggle-button-div" onClick={toggle}>
@@ -95,7 +95,7 @@ const TopBar = ({ show, toggle, page, project }) => {
 	if (project.type === 1) {
 		return (
 			<div
-				className={`openboard-topbar-project`}
+				className={`zs-topbar-project`}
 			>
 								<div className={toggleButtonClassName}>
 						<div id="topbar-toggle-button-div" onClick={toggle}>
@@ -114,7 +114,7 @@ const TopBar = ({ show, toggle, page, project }) => {
 	if (project.type === 2) { 
 		return (
 			<div
-				className={`openboard-topbar-project`}
+				className={`zs-topbar-project`}
 			>
 								<div className={toggleButtonClassName}>
 						<div id="topbar-toggle-button-div" onClick={toggle}>
@@ -133,7 +133,7 @@ const TopBar = ({ show, toggle, page, project }) => {
 	if (project.type === 3) {
 		return (
 			<div
-				className={`openboard-topbar-project`}
+				className={`zs-topbar-project`}
 			>
 								<div className={toggleButtonClassName}>
 						<div id="topbar-toggle-button-div" onClick={toggle}>
@@ -199,7 +199,7 @@ const TopBar = ({ show, toggle, page, project }) => {
 						</button>
 					</div>
 				</Modal>
-				<div className={`openboard-topbar-project`}>
+				<div className={`zs-topbar-project`}>
 					<div className={toggleButtonClassName}>
 						<div id="topbar-toggle-button-div" onClick={toggle}>
 							<MdMenu size="1.5em" />

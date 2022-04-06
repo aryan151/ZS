@@ -98,10 +98,10 @@ const Splash = () => {
 					<div class="splash-section-1-column-2">
 						<div class="splash-scenes">
 							<div id="splash-scene-one">
-								<img src={sceneOne} width="100%" alt="OpenBoard-SceneOne" />
+								<img src={sceneOne} width="100%" alt="zs-SceneOne" />
 							</div>
 							<div id="splash-scene-two">
-								<img src={sceneTwo} width="100%" alt="OpenBoard-SceneTwo" />
+								<img src={sceneTwo} width="100%" alt="zs-SceneTwo" />
 							</div>
 						</div>
 						<span id="splash-floating-span-1">
@@ -109,14 +109,14 @@ const Splash = () => {
 								className="far fa-check-circle"
 								style={{ paddingRight: 10, color: "#FF0000" }}
 							></i>{" "}
-							Collect Creative Feedback
+							Collect Feedback
 						</span> 
 						<span id="splash-floating-span-2">
 							<i
 								className="far fa-check-circle"
 								style={{ paddingRight: 10, color: "#FF0000" }}
 							></i>{" "}
-							Launch Small Projects
+							Launch Campaigns
 						</span>
 					</div>
 				</div>
