@@ -27,9 +27,7 @@ def createProject():
     project = Project(
         title=projectTitle,
         description=projectDescription,
-        owner_id=userId,
-        color='#F06A6A',
-        icon='fa-project-diagram',
+        owner_id=userId, 
         created_at = today,
         updated_at = today
     )

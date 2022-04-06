@@ -7,7 +7,7 @@ import { getProject, addTask } from "../../store/project";
 import { useTaskDetail } from "../../context/TaskDetailContext";
 import { Droppable } from "react-beautiful-dnd";
 import { useEffect, useState } from "react";
-const Section = ({section, tasks, projectId}) => {
+const Section = ({section, tasks, projectId, projecttype}) => {
     const dispatch = useDispatch();
     const {setShowTaskDetail, setCurrentTask} = useTaskDetail();
     const [newTask, setNewTask] = useState(false);
@@ -23,19 +23,19 @@ const Section = ({section, tasks, projectId}) => {
 	return (
 		<div className="board-section">
 			<div className="board-section-title">
-				<h3>{section.title}</h3>
-				{/* <FaPlus id="board-section-title-add-task" />
-				<FaEllipsisH id="board-section-title-options" /> */}
+				<h3>{section.title}</h3> 
 			</div>
 			<Droppable droppableId={section.id.toString()}>
 				{(provided) => (
-					<TaskList innerRef={provided.innerRef} provided={provided}>
+					<TaskList innerRef={provided.innerRef} provided={provided}>  
 						{Object.keys(tasks).map((key, index) => (
-							<Task key={tasks[key].id} task={tasks[key]} index={index} projectId={projectId}/>
+							<Task key={tasks[key].id} task={tasks[key]} index={index} projectId={projectId} projecttype={projecttype}/>
 						))}
 						{provided.placeholder}
-
-						<div onClick={(addTaskEnd)} id="section-add-task-button-lower"> + Add a task</div>
+					{(projecttype === 0 ? 	<div onClick={(addTaskEnd)} id="section-add-task-button-lower"> + Add a Task</div> : null)}
+					{(projecttype === 1 ? 	<div onClick={(addTaskEnd)} id="section-add-task-button-lower"> + Add an Item</div> : null)}
+					{(projecttype === 2 ? 	<div onClick={(addTaskEnd)} id="section-add-task-button-lower"> + Add an Employee</div> : null)}
+					{(projecttype === 3 ? 	<div onClick={(addTaskEnd)} id="section-add-task-button-lower"> + Add a Task</div> : null)}
 					</TaskList>
 				)}
 			</Droppable>

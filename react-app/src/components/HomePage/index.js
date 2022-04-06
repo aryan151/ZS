@@ -9,15 +9,25 @@ import { MdLock } from "react-icons/md";
 import NewProject from "../SideBar/NewProject";
 import { AiOutlineProject } from "react-icons/ai"; 
 import { BiAddToQueue } from "react-icons/bi";
-
 const HomePage = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const user = useSelector((state) => state.session.user);
+	const theme = useSelector(state => state.theme); 
 	const projects = user.projects;
 	const [content, setContent] = useState("");
 	const didMount = useRef(false);
 	const [saveState, setSaveState] = useState("");
+
+
+	const onlyprojects = [] 
+	const changearray = Object.entries(projects)
+	for (const project in changearray) {
+		if (changearray[project][1].project_type === 0) {
+			onlyprojects.push(changearray[project][1].project_id)
+		}   
+	} 
+
 
 	const currentDate = new Date();
 	const months = [
@@ -81,25 +91,25 @@ const HomePage = () => {
 		<div className="homepage-main"> 
 			<div className="homepage-content">
 				<h5 id="homepage-date">{`${currentDay}, ${currentMonth} ${currentNumberDay}`}</h5>
-				<h2 id="homepage-greeting">Welcome back, {user.fullname}</h2>
+				<h2 id="homepage-greeting">{theme === 'usa' ? 'Welcome,' : 'Bienvenue, '} {user.fullname}</h2>
 				<div className="homepage-content-widgets">
 					<div className="homepage-content-widgets-sort">
 						<Priorities />
 						<div className="homepage-widget-half">
 							<div className="homepage-widget-content">
-							<h2 id="homepage-notepad-widget-title">Projects</h2>
+							<h2 id="homepage-notepad-widget-title">{theme === 'usa' ? 'Projects' : 'Projets'}</h2> 
 								<div id="homepage-user-projects">
 
 										<NewProject />
 
-									{projects
-										? Object.keys(projects).map((key) => (
+									{onlyprojects
+										? onlyprojects.map((key) => (
 												<div
-													key={projects[key].project_id}
+													key={key}
 													id="project-item"
 													onClick={() =>
 														history.push(
-															`/projects/${projects[key].project_id}`
+															`/projects/${key}`
 														)
 													}
 												>
@@ -119,12 +129,12 @@ const HomePage = () => {
 						<div className="homepage-widget-full">
 							<div className="homepage-widget-content">
 							<h2 id="homepage-notepad-widget-title">
-									Private Notepad
+							{theme === 'usa' ? 'Private Notepad' : 'Bloc-notes Privé'}
 									<MdLock color="#6D6E6F" />
 								</h2>
 								<div className="homepage-notepad-widget-content">
 									<textarea
-										placeholder="Type away..."
+										placeholder={theme === 'usa' ? "Jot down a quick note or add a link to an important resource." : 'Notez une note rapide ou ajoutez un lien vers une ressource importante.'}
 										required
 										value={content}
 										onChange={updateContent}

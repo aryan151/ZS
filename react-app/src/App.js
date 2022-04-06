@@ -9,10 +9,13 @@ import LoadingScreen from "./components/LoadingScreen";
 import Splash from "./components/Splash/Splash";
 import { authenticate } from "./store/session";
 import RootPage from "./components/RootPage";
+import { setTheme } from "./store/theme";
+ 
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
 	const [showSidebar, setShowSidebar] = useState();
+	const theme = useSelector(state => state.theme); 
 	const toggleSidebar = () => {
 		setShowSidebar(!showSidebar);
 		localStorage.setItem('sidebar', !showSidebar)
@@ -26,6 +29,8 @@ function App() {
 	useEffect(() => {
 		(async () => {
 			await dispatch(authenticate());
+			dispatch(setTheme())
+		
 			if (!localStorage.getItem("sidebar")) {
 				localStorage.setItem("sidebar", true);
 				setShowSidebar(true);

@@ -1,51 +1,104 @@
 import React from "react";
+import {useState} from 'react';
 import { NavLink, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import LogoutButton from "../auth/LogoutButton";
 import { BsLinkedin, BsGithub } from "react-icons/bs";
 import NewProject from "./NewProject";
 import { MdMenuOpen } from "react-icons/md";
 import { FaSquare, FaPlus } from "react-icons/fa";
-import OpenBoardLogo from "../../images/OpenBoard-Logo-Dark.png";
+import { AiOutlineRightCircle } from "react-icons/ai";
 import "./SideBar.css";
 import { MdHome} from "react-icons/md";
-
+import { RiHome6Line } from "react-icons/ri";  
+import { MdOutlineChecklist } from "react-icons/md";
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
+import { MdCases } from "react-icons/md"; 
+import { AiOutlineProject } from "react-icons/ai";
+import { Switch } from "react-switch"; 
+import {toggleTheme} from '../../store/theme'
+import { AiOutlineDollarCircle } from "react-icons/ai";
 const SideBar = ({ show, toggle }) => {
-	const user = useSelector((state) => state.session.user);
+	const dispatch = useDispatch();
+	const user = useSelector((state) => state.session.user); 
 	const user_projects = user.projects;
-	const sidebarClass = show ? "sidebar-open" : "sidebar-closed";
+	const sidebarClass = show ? "sidebar-open" : "sidebar-closed"; 
+	const theme = useSelector(state => state.theme); 
+	const [currentTheme, setCurrentTheme] = useState(theme); 
+	const onlyprojects = []
+	const inventory = []
+	const workers = [] 
+	const toDo = [] 
 
+	function handleToggle() {
+		dispatch(toggleTheme());
+		setCurrentTheme(currentTheme === 'usa' ? 'eur' : 'usa');  
+	  }
+
+
+	const changearray = Object.entries(user_projects)
+	for (const project in changearray) {
+		if (changearray[project][1].project_type === 0) {
+			onlyprojects.push(changearray[project][1].project_id)
+		}   
+		if (changearray[project][1].project_type === 1) {
+			inventory.push(changearray[project][1].project_id)
+		}   
+		if (changearray[project][1].project_type === 2) {
+			workers.push(changearray[project][1].project_id) 
+		}   
+		if (changearray[project][1].project_type === 3) { 
+			toDo.push(changearray[project][1].project_id)
+		}   
+	} 
 	return (
 		<nav className={sidebarClass}>
+			
 			<div className="sidebar-header">
-				<p id="sidebar-header-logo">Navigation</p> 
-				<div id="sidebar-toggle-button" onClick={toggle}>
+				<p id="sidebar-header-logo">{theme === 'usa' ? 'Navigation' : 'La Navigation'}</p> 
+				<div id="sidebar-toggle-button" onClick={toggle}>  
 					<MdMenuOpen size="2em" />
 				</div>
 			</div>
 			<div className="sidebar-links-section">
-				<NavLink to="/" exact={true} activeClassName="sidebar-active">
+				<NavLink to="/" exact={true} activeClassName="sidebar-active"> 
 					<div id="sidebar-link">
-						<MdHome size="1.5em" className='sidebarlogotopleft' /> <span id="sidebar-link-text">Home</span>
+						<RiHome6Line size="1.5em" className='sidebarlogotopleft' /> <span id="sidebar-link-text">{theme === 'usa' ? 'Home' : 'Domicile'}</span> 
 					</div>
 				</NavLink>
+				<NavLink to={`/projects/${toDo[0]}`} exact={true} activeClassName="sidebar-active"> 
+					<div id="sidebar-link">
+						<MdOutlineChecklist size="1.5em"  className='sidebarlogotopleft'/> <span id="sidebar-link-text">{theme === 'usa' ? 'To Do' : 'Liste'}</span> 
+					</div>
+				</NavLink> 
+                <NavLink to={`/projects/${inventory[0]}`} exact={true} activeClassName="sidebar-active">
+					<div id="sidebar-link">
+						<MdCases size="1.5em" className='sidebarlogotopleft'/> <span id="sidebar-link-text">{theme === 'usa' ? 'Inventory' : 'Inventaire'}</span>  
+					</div>
+				</NavLink> 
+                <NavLink to={`/projects/${workers[0]}`} exact={true} activeClassName="sidebar-active"> 
+					<div id="sidebar-link">
+						<AiOutlineUsergroupAdd  size="1.5em" className='sidebarlogotopleft' /> <span id="sidebar-link-text">{theme === 'usa' ? 'Employees' : 'Employés'}</span> 
+					</div>  
+				</NavLink> 
 			</div>
 			<div className="sidebar-projects-section">
 				<div id="sidebar-projects-title">
-					My Projects <div id="add-project-button"> <NewProject location="sidebar" /></div>
+				{theme === 'usa' ? 'My Projects' : 'Mes Projets'} <div id="add-project-button"> <NewProject location="sidebar" /></div>
 				</div>
-				{user_projects
-					? Object.keys(user_projects).map((key) => (
+				{onlyprojects
+					? onlyprojects.map((key) => (
+						
 							<NavLink
 								activeClassName="sidebar-active"
-								key={user_projects[key].project_id}
-								to={`/projects/${user_projects[key].project_id}`}
-							>
+								key={key}
+								to={`/projects/${key}`}
+							> 
 								<div id="sidebar-project-link">
 									<div id="sidebar-project-color">
-										<FaSquare
-											size=".7em"
-											color={user_projects[key].project_color}
+										<AiOutlineRightCircle
+											size="1.3em"
+											color="red"
 										/>
 									</div>
 									<div id="sidebar-project-link-title">
@@ -56,10 +109,22 @@ const SideBar = ({ show, toggle }) => {
 					  ))
 					: null}
 			</div>
+			<div className="sidebar-links-section">
+				<div activeClassName="sidebar-active"> 
+					<div id="sidebar-link"   onClick={handleToggle}> 
+						<RiHome6Line size="1.5em" className='sidebarlogotopleft' /> <span id="sidebar-link-text">{theme === 'usa' ? 'Français' : 'English'}  </span> 
+					</div> 
+				</div>
+				<div activeClassName="sidebar-active"> 
+					<div id="sidebar-link">
+						<MdOutlineChecklist size="1.5em"  className='sidebarlogotopleft'/> <span id="sidebar-link-text">{theme === 'usa' ? 'To Do' : 'Liste'}</span> 
+					</div>
+				</div> 
+			</div> 
 			<div className="sidebar-log-out">
 				<LogoutButton />
-			</div> 
-		</nav>
+			</div>
+		</nav>  
 	);
 };
 

@@ -45,6 +45,7 @@
     align-items: center;
     display: inline-flex;
     justify-content: center;
+    color: white; 
     height: 36px;
     min-height: 36px;
     min-width: 36px;
@@ -69,7 +70,7 @@
 #top-bar-project-icon{
     width: 48px;
     height: 48px;
-    background-color: #FF0000;
+    background-color: #FFFFFF;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -122,19 +123,24 @@
     color: white;
     font-size: 24px;
 }
+
 #top-bar-title-project{
-    color: black;
+    color: white;
     font-size: 24px;
 }
 .openboard-topbar-project{
     align-items: center;
     box-sizing: border-box;
     display: flex;
-    background-color: white;
+    background-color: black;
     flex-shrink: 0;
     min-height: 72px;
     padding: 0 24px;
     position: sticky;
 	top: 0;
     z-index: 8;
+}
+
+.delettopdrop {
+    color: red;
 }

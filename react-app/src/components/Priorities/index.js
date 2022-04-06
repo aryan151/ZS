@@ -9,7 +9,7 @@ const Priorities = () => {
 	const [overdue, setOverdue] = useState(false);
 	const [completed, setCompleted] = useState(false);
     const { setShowTaskDetail, setCurrentTask, setFromHome } = useTaskDetail();
-
+	const theme = useSelector(state => state.theme);  
 	const priorities = useSelector((state) => state.priorities);
 	const upcomingTasks = priorities.upcoming;
 	const overdueTasks = priorities.overdue;
@@ -18,7 +18,7 @@ const Priorities = () => {
 		<div className="homepage-widget-half">
 			<div className="homepage-widget-content">
 				<div className="priorities-topbar">
-					<h2 id="priorities-notepad-widget-title">My Priorities</h2>
+					<h2 id="priorities-notepad-widget-title">{theme === 'usa' ? 'My Priorities' : 'Mes Priorités'}</h2>
 					<div className="priorities-nav">
 						<div
 							id={
@@ -30,7 +30,7 @@ const Priorities = () => {
 								setCompleted(false);
 							}}
 						>
-							Upcoming
+							{theme === 'usa' ? 'Upcoming' : 'A Venir'}
 						</div>
 						<div
 							id={
@@ -42,7 +42,7 @@ const Priorities = () => {
 								setCompleted(false);
 							}}
 						>
-							Overdue {Object.keys(overdueTasks).length?`(${Object.keys(overdueTasks).length})`:null}
+							{theme === 'usa' ? 'Overdue' : 'En Retard'} {Object.keys(overdueTasks).length?`(${Object.keys(overdueTasks).length})`:null}
 						</div>
 						<div
 							id={
@@ -54,7 +54,7 @@ const Priorities = () => {
 								setCompleted(true);
 							}}
 						>
-							Completed
+							{theme === 'usa' ? 'Completed' : 'Complété'}
 						</div>
 					</div>
 				</div>

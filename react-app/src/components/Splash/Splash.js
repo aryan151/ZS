@@ -1,5 +1,4 @@
 import "./Splash.css";
-import OpenBoardLogo from "../../images/OpenBoard-Logo.png";
 import sceneOne from "../../images/scene-1a.jpeg";
 import sceneTwo from "../../images/scene-1b.jpeg";
 import * as sessionActions from "../../store/session";

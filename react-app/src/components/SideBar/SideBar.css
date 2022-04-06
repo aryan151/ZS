@@ -3,7 +3,7 @@
 	font-family: "Montserrat-Medium";
 	flex: 0 0 auto;
 	flex-direction: column;
-	background-color: #1e1f21;
+	background-color: black;
 	color: white;
 	transition: margin-left 250ms ease-out, transform 250ms ease-out;
 	width: 240px;
@@ -37,10 +37,10 @@
 }
 #sidebar-toggle-button {
 	margin-right: 24px;
-	color: #a2a0a2;
+	color: white; 
 }
 #sidebar-toggle-button:hover {
-	color: white;
+
 	cursor: pointer;
 }
 .sidebar-links-section {
@@ -63,6 +63,7 @@
 #sidebar-link {
 	padding: 7px 24px;
 	font-size: 14px;
+	cursor: pointer;
 }
 #sidebar-link-text {
 	margin-bottom: 16px;
@@ -115,6 +116,8 @@
     height: 56px;
     display: flex;
     align-items: center;
+	flex-direction: column;
+
     padding: 5px 24px;
     margin-top: auto;
     margin-bottom: 50px;
@@ -127,8 +130,11 @@
     border-radius: 5px;
     border:none;
     height: 36px;
-    cursor: pointer;
+    cursor: pointer; 
 }
+
+
+
 
 #sidebar-add-new-project-button{
     margin-left: auto;
@@ -139,3 +145,5 @@
 #add-project-button:hover{
 	cursor:pointer;
 }
+
+

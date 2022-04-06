@@ -1,5 +1,4 @@
 import "./LoadingScreen.css";
-import LoadingLogo from "../../images/OpenBoard-LogoLoading.png"
 const LoadingScreen = () => {
 	return (
 		<div className="loading-screen">
@@ -10,9 +9,6 @@ const LoadingScreen = () => {
 					className="loading_screen_spinner loading_screen_spinner_dark"
 				></img>
 			</div>
-            <div className="loading-screen-logo-wrapper">
-                <img src={LoadingLogo} alt="" className="loading-screen-logo" />
-            </div>
 		</div>
 	);
 };

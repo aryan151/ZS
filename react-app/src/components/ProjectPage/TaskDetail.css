@@ -120,13 +120,13 @@
     font-size: 12px;
     border: 1px solid #CECBCB;
     color: black;
-    background-color: #F06A6A;
+    background-color: red; 
     border-radius: 5px;
     height: 28px;
     cursor: pointer;
 }
 #task-detail-toolbar-delete:hover{
-    background-color: #DF6064;
+    background-color: white;
 }
 #task-detail-toolbar-close{
     color: #6D6E6F;

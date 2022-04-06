@@ -20,7 +20,7 @@
     padding: 25px 12px 0;
     position: relative;
     min-width: 1px;
-    overflow-x: auto;
+    overflow-x: auto; 
 }
 .projectpage-board-body-details-open{
     min-width: calc(100% - 700px);

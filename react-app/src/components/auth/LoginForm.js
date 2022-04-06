@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 import "./Login.css";
-import OpenBoardLogo from "../../images/OpenBoard-Logo.png";
 import { NavLink } from "react-router-dom";
 const LoginForm = () => {
 	const [errors, setErrors] = useState([]);

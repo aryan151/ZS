@@ -5,11 +5,10 @@ class Project(db.Model):
     __tablename__ = 'projects'
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255), nullable=False)
+    title = db.Column(db.String(255), nullable=False)  
     description = db.Column(db.Text)
+    type = db.Column(db.Integer, nullable=True, default=0)  
     owner_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    color = db.Column(db.String(100), nullable=False, default='#F06A6A')
-    icon = db.Column(db.String(255), nullable=False, default= 'fa-project-diagram')
     created_at = db.Column(db.DateTime(timezone=True), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True), nullable=False)
 
@@ -37,8 +36,7 @@ class Project(db.Model):
             'project_members': project_members,
             'sections': sections,
             'sections_order': sections_order,
-            'color' : self.color,
-            'icon' : self.icon,
+            'type': self.type,
             'created_at' : self.created_at,
             'updated_at' : self.updated_at
         }
@@ -49,8 +47,7 @@ class Project(db.Model):
             'title': self.title,
             'description': self.description,
             'owner_id': self.owner_id,
-            'color' : self.color,
-            'icon' : self.icon,
+            'type': self.type, 
             'created_at' : self.created_at,
             'updated_at' : self.updated_at
         }

@@ -4,14 +4,17 @@ import {BsCheckCircle, BsFillCheckCircleFill} from 'react-icons/bs'
 import { useTaskDetail } from "../../context/TaskDetailContext";
 import { Draggable } from "react-beautiful-dnd";
 import { toggleCompleteTask, getProject} from "../../store/project";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState , useEffect} from "react";
-const Task = ({task, index, projectId}) => {
+const Task = ({task, index, projectId, projecttype}) => {
     const dispatch = useDispatch();
     const taskRef = useRef();
     const [active, setActive] = useState(false);
+	const theme = useSelector(state => state.theme); 
     const {setShowTaskDetail, currentTask, setCurrentTask} = useTaskDetail();
+	const [prio, setPrio] = useState(task.priority)
 
+	
 
         useEffect(() => {
             if(currentTask.id === task.id){
@@ -45,7 +48,7 @@ const Task = ({task, index, projectId}) => {
         if (res){
             await dispatch(getProject(projectId))
         }
-    }
+    }  
 
 	return (
 		<Draggable draggableId={task.id.toString()} index={index}>
@@ -77,17 +80,36 @@ const Task = ({task, index, projectId}) => {
 							<div className="task-card-indicators">
 								{task.priority !== "null" ? (
 									<div
-										className="task-card-indicator"
+										className="task-card-indicator" 
 										id={`priority-${task.priority}`}
 									>
-										{task.priority}
-									</div>
+										{(projecttype === 0  || projecttype === 3) && task.priority === 'Low' ? <>{theme === 'usa' ? 'Low' : 'Faible'} </> : null }
+										{(projecttype === 0  || projecttype === 3) && task.priority === 'Medium' ? <>{theme === 'usa' ? 'Medium' : 'Moyen'} </> : null }
+										{(projecttype === 0  || projecttype === 3) && task.priority === 'High' ? <>{theme === 'usa' ? 'High' : 'Important'} </> : null }
+										{(projecttype === 1) && task.priority === 'Low' ? <>{theme === 'usa' ? 'Livestock' : 'Bétail'} </> : null }
+										{(projecttype === 1) && task.priority === 'Medium' ? <>{theme === 'usa' ? 'Packaged' : 'Emballé'} </> : null }
+										{(projecttype === 1) && task.priority === 'High' ? <>{theme === 'usa' ? 'Cold storage' : 'Chambre froide'} </> : null }
+										{(projecttype === 2) && task.priority === 'Low' ? <>{theme === 'usa' ? 'Very good' : 'très bien'} </> : null }
+										{(projecttype === 2) && task.priority === 'Medium' ? <>{theme === 'usa' ? 'Ok' : 'bien'} </> : null }
+										{(projecttype === 2) && task.priority === 'High' ? <>{theme === 'usa' ? 'Needs Help' : `A besoin d'aide`} </> : null }
+									</div> 
 								) : null}
 								{task.status !== "null" ? (
-									<div className={`task-card-indicator status-${task.status}`}>
-										{task.status}
+									<div className={`task-card-indicator status-${task.status}`}>   
+
+										{(projecttype === 0  || projecttype === 3) && task.status === 'On Track' ? <>{theme === 'usa' ? 'On Track' : 'Sur la bonne voie'} </> : null }
+										{(projecttype === 0  || projecttype === 3) && task.status === 'At Risk' ? <>{theme === 'usa' ? 'At Risk' : 'à risque'} </> : null }
+										{(projecttype === 0  || projecttype === 3) && task.status === 'Off Track' ? <>{theme === 'usa' ? 'Off Track' : 'Hors route'} </> : null }
+										{(projecttype === 1) && task.priority === 'Low' ? <>{theme === 'usa' ? 'Low' : 'Faible'} </> : null }
+										{(projecttype === 1) && task.priority === 'Medium' ? <>{theme === 'usa' ? 'Medium' : 'Moyen'} </> : null }
+										{(projecttype === 1) && task.priority === 'High' ? <>{theme === 'usa' ? 'High' : 'Important'} </> : null }
+										{(projecttype === 2) && task.priority === 'Low' ? <>{theme === 'usa' ? 'Full Time' : 'à plein temps'} </> : null }
+										{(projecttype === 2) && task.priority === 'Medium' ? <>{theme === 'usa' ? 'Part Time' : 'à temps partiel'} </> : null }
+										{(projecttype === 2) && task.priority === 'High' ? <>{theme === 'usa' ? 'Contract' : 'Contracter'} </> : null }
+									
 									</div>
-								) : null}
+								) : null} 
+						
 							</div>
 						</div>
 					</div>

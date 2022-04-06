@@ -25,9 +25,10 @@ import { addTaskThunk } from "../../store/subtask";
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import Subtask from "./subtasks/subtask";
 
-const TaskDetail = ({ show, task, projectId }) => {
+const TaskDetail = ({ show, task, projectId, projecttype }) => {
 	const dispatch = useDispatch();
 	const currentUser = useSelector((state) => state.session.user);
+	const theme = useSelector(state => state.theme); 
 	const [comments, setComments] = useState();
 	const didMount = useRef(false);
 	const assigneeDiv = useRef();
@@ -299,8 +300,7 @@ const TaskDetail = ({ show, task, projectId }) => {
 			className={`task-detail-overlay ${
 				show ? "task-detail-overlay-open" : null
 			}`}
-		>
-			{console.log(task)}
+		> 
 			<div className="task-detail-inner-content">
 				{task ? (
 					<>
@@ -314,7 +314,10 @@ const TaskDetail = ({ show, task, projectId }) => {
 											: "task-detail-toolbar-complete-button"
 									}
 								>
-									<MdDone /> {task.completed ? "Completed" : "Mark Complete"}
+									{projecttype === 0 ? <><MdDone /> {task.completed ? "Completed" : "Mark Complete"} </>: null} 
+									{projecttype === 1 ? <><MdDone /> {task.completed ? "Checked" : "Need to Check"} </>: null} 
+									{projecttype === 2 ? <><MdDone /> {task.completed ? "Online" : "Offline"} </>: null} 
+									{projecttype === 3 ? <><MdDone /> {task.completed ? "Completed" : "Mark Complete"} </>: null} 
 								</button>{" "}
 								<div style={{ marginLeft: "10px" }}>
 									<p>{saveState}</p>
@@ -327,7 +330,7 @@ const TaskDetail = ({ show, task, projectId }) => {
 										id="task-detail-toolbar-delete"
 										onClick={executeDeleteTask}
 									>
-										Delete task
+										Delete
 									</button>
 								</div>
 								<div
@@ -346,13 +349,15 @@ const TaskDetail = ({ show, task, projectId }) => {
 								<TextareaAutosize
 									id="title-textarea"
 									type="text"
-									placeholder="Write a task name"
+									placeholder={theme === 'usa' ? "title" : `le titre`} 
 									value={title}
 									onChange={handleTitleChange}
 								/>
 							</div>
 							<div className="task-detail-fields">
 								<div className="task-detail-fields-row">
+									{ projecttype === 0 ?  
+									<>
 									<div id="task-detail-row-label">Assignee</div>
 									<div>
 										{showAssigneeForm ? (
@@ -436,9 +441,13 @@ const TaskDetail = ({ show, task, projectId }) => {
 											</>
 										)}
 									</div>
+									</>: null}
+
+ 
 								</div>
 								<div className="task-detail-fields-row">
-									<div id="task-detail-row-label">Due date</div>
+									{projecttype === 0 || projecttype === 3 ? <>
+									<div id="task-detail-row-label">{theme === 'usa' ? 'Due date' : `Date d'échéance`}</div> 
 									<div>
 										{showDateForm ? (
 											<div
@@ -494,100 +503,92 @@ const TaskDetail = ({ show, task, projectId }) => {
 											</div>
 										)}
 									</div>
+									</> : null}
 								</div>
-								<div className="task-detail-fields-row">
-									<div id="task-detail-row-label">Priority</div>
+								{projecttype === 0  || projecttype === 3? <>
+								<div className="task-detail-fields-row">  
+									<div id="task-detail-row-label">{theme === 'usa' ? 'Priority' : 'Priorité'}</div>
 									<div id="task-detail-row-content">
 										<select value={priority} onChange={handlePriorityChange}>
 											<option value="null">---</option>
-											<option value="Low">Low</option>
-											<option value="Medium">Medium</option>
-											<option value="High">High</option>
+											<option value="Low">{theme === 'usa' ? 'Low' : 'Faible'}</option>
+											<option value="Medium">{theme === 'usa' ? 'Medium' : 'Moyen'}</option>
+											<option value="High">{theme === 'usa' ? 'High' : 'Important'}</option>
 										</select>
 									</div>
 								</div>
 								<div className="task-detail-fields-row">
-									<div id="task-detail-row-label">Status</div>
+									<div id="task-detail-row-label">{theme === 'usa' ? 'Status' : 'Statut'}</div>
 									<div id="task-detail-row-content">
 										<select value={status} onChange={handleStatusChange}>
 											<option value="null">---</option>
-											<option value="On Track">On Track</option>
-											<option value="At Risk">At Risk</option>
-											<option value="Off Track">Off Track</option>
-										</select>
+											<option value="On Track">{theme === 'usa' ? 'On Track' : 'Sur la bonne voie'}</option>
+											<option value="At Risk">{theme === 'usa' ? 'At Risk' : 'à risque'}</option>
+											<option value="Off Track">{theme === 'usa' ? 'Off Track' : 'Hors route'}</option>
+										</select> 
+									</div>
+								</div>
+								</> : null } 
+								{projecttype === 1 ? <> 
+								<div className="task-detail-fields-row">
+									<div id="task-detail-row-label">{theme === 'usa' ? 'Type' : 'la catégorie'}</div> 
+									<div id="task-detail-row-content"> 
+										<select value={priority} onChange={handlePriorityChange}>
+											<option value="null">---</option> 
+											<option value="Low">{theme === 'usa' ? 'Livestock' : 'Bétail'}</option>
+											<option value="Medium">{theme === 'usa' ? 'Packaged' : 'Emballé'}</option>
+											<option value="High">{theme === 'usa' ? 'Cold storage' : 'Chambre froide'}</option>
+										</select> 
 									</div>
 								</div>
 								<div className="task-detail-fields-row">
-									<div id="task-detail-row-label">Description</div>
+									<div id="task-detail-row-label">{theme === 'usa' ? 'Priority' : 'Priorité'}</div>
+									<div id="task-detail-row-content">
+										<select value={status} onChange={handleStatusChange}> 
+											<option value="null">---</option>
+											<option value="On Track">{theme === 'usa' ? 'Priority' : 'Priorité'}</option>
+											<option value="At Risk">{theme === 'usa' ? 'Priority' : 'Priorité'}</option>
+											<option value="Off Track">{theme === 'usa' ? 'Priority' : 'Priorité'}</option>
+										</select>
+									</div>
+								</div>
+								</> : null }
+								{projecttype === 2 ? <>
+								<div className="task-detail-fields-row">  
+									<div id="task-detail-row-label">{theme === 'usa' ? 'Performance' : `l' exécution`}</div>
+									<div id="task-detail-row-content">
+										<select value={priority} onChange={handlePriorityChange}>
+											<option value="null">---</option>
+											<option value="Low">{theme === 'usa' ? 'Very good' : 'très bien'}</option>
+											<option value="Medium">{theme === 'usa' ? 'Ok' : 'bien'}</option>
+											<option value="High">{theme === 'usa' ? 'Needs Help' : `A besoin d'aide`}</option>
+										</select>
+									</div>  
+								</div> 
+								<div className="task-detail-fields-row">
+									<div id="task-detail-row-label">{theme === 'usa' ? 'Type' : 'la catégorie'}</div>
+									<div id="task-detail-row-content">
+										<select value={status} onChange={handleStatusChange}> 
+											<option value="null">---</option> 
+											<option value="On Track">{theme === 'usa' ? 'Full Time' : 'à plein temps'}</option>
+											<option value="At Risk">{theme === 'usa' ? 'Part Time' : 'à temps partiel'}</option>
+											<option value="Off Track">{theme === 'usa' ? 'Contract' : 'Contracter'}</option>
+										</select> 
+									</div>
+								</div>
+								</> : null }  
+								<div className="task-detail-fields-row"> 
+									<div id="task-detail-row-label">{theme === 'usa' ? 'Description' : 'La description'}</div>
 								</div>
 								<div>
 									<TextareaAutosize
 										id="description-textarea"
-										type="text"
-										placeholder="Add more detail to this task..."
+										type="text" 
+										placeholder={theme === 'usa' ? '"Add additional info..."' : 'Ajouter des informations supplémentaires										'}
 										value={description}
 										onChange={handleDescriptionChange}
 									/>
-								</div>
-								{/* <div className="task-detail-fields-row">
-									<div id="task-detail-row-label">Subtasks</div>
-								</div> */}
-
-					{/* <div className='tasks-container'  onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-                    <div className='pp-tasks'>
-                        <p className='task-header'>Tasks</p>
-                        {task.tasks.map(task => (
-                            <div key={`task-${task.id}`}>
-                                <Subtask subtask={task} calculateCompletion={calculateCompletion}/>
-                            </div>
-                        ))}
-                        <div className={isHovered ? 'add-task-hovered' : 'add-task'}>
-                            {!addSubTask 
-                                ? 
-                                <>
-
-                                    <button className='add-task-button' onClick={() => setAddSubTask(true)}>
-                                        Add Task
-                                    </button>
-                                </>
-                                :
-                                <>
-                                    <div clasSName='error-container'>
-                                        {error && <p className='error'>{error}</p>}
-                                    </div>
-                                    <div className='ol-input task-input'>
-                                        <input maxLength='200' name='task' type="text" placeholder=' ' value={newSubTask} onChange={(e) => setNewSubTask(e.target.value)}/>
-                                        <label htmlFor="task">Task</label>
-                                    </div>
-                                    <button className='task-add' onClick={handleAddTask}>Add</button>
-                                    <button className='task-cancel link' onClick={handleCancel}>Cancel</button>
-                                </>
-                            }
-                        </div>
-                    </div>
-                    <div className='progress' style={{ width: 100, height: 100 }}>
-                        <ProgressProvider valueStart={0} valueEnd={valueEnd}>
-                            {value => <CircularProgressbar
-                                value={value}
-                                text={`${value}%`}
-                                strokeWidth={8}
-                                styles={buildStyles({
-                                    textSize: '20px',
-                                    rotation: 0.25,
-                                    pathTransitionDuration: 1,
-                                    pathColor: `#65916c`,
-                                    textColor: `#65916c`,
-                                    trailColor: '#d6d6d6',
-                                })}
-                            />}
-                        </ProgressProvider>
-                    </div>
-                </div> */}
-
-
-
-
-
+								</div>  
 							</div>
 
 							<div className="task-detail-comments-section">
@@ -629,8 +630,8 @@ const TaskDetail = ({ show, task, projectId }) => {
 							id="comment-textarea"
 							type="text"
 							minRows={commentOpen ? 3 : 1}
-							onClick={() => setCommentOpen(true)}
-							placeholder="Ask a question or post an update..."
+							onClick={() => setCommentOpen(true)} 
+							placeholder={theme === 'usa' ? 'Ask a question or post an update...' : 'Poser une question ou publier une mise à jour							'}
 							value={comment}
 							onChange={(e) => setComment(e.target.value)}
 						/>

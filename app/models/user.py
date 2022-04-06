@@ -38,8 +38,8 @@ class User(db.Model, UserMixin):
         for project in self.user_projects:
             projects[project.id] = {
                 'project_id': project.id,
-                'project_title': project.title,
-                'project_color': project.color
+                'project_title': project.title, 
+                'project_type': project.type
             }
         return {
             'id': self.id,

@@ -11,7 +11,7 @@ class Task(db.Model):
     assignee_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     section_id = db.Column(db.Integer, db.ForeignKey("sections.id"), nullable=False)
     status = db.Column(db.String(100))
-    priority = db.Column(db.String(100))
+    priority = db.Column(db.String(100)) 
     end_date = db.Column(db.Date)
     completed = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), nullable=False)

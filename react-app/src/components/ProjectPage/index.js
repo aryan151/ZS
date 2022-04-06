@@ -113,9 +113,9 @@ const ProjectPage = () => {
 
 	
 
-	return (
+	return ( 
 		<div className="projectpage-main">
-			<div className="projectpage-board">
+			<div className="projectpage-board"> 
 				<div
 					onClick={() => {
 						setCurrentTask("");
@@ -138,6 +138,7 @@ const ProjectPage = () => {
 									section={section}
 									tasks={tasks}
 									projectId={projectId}
+									projecttype={project.type}
 								/>
 							);
 						})}
@@ -147,6 +148,7 @@ const ProjectPage = () => {
 					show={showTaskDetail}
 					task={currentTask}
 					projectId={projectId}
+					projecttype={project.type} 
 				/>
 			</div>
 		</div>

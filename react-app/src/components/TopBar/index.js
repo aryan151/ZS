@@ -1,14 +1,17 @@
 import "./TopBar.css";
 import { MdMenu, MdExpandMore, MdModeEdit } from "react-icons/md";
 import { useEffect, useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Modal from "../Modal";
 import { authenticate } from "../../store/session";
 import { useHistory } from "react-router";
 import {FaProjectDiagram} from 'react-icons/fa'
 import { saveProject, deleteProject, getProject} from "../../store/project";
 import { AiOutlineProject } from "react-icons/ai";
- 
+import { TiDelete } from "react-icons/ti";  
+import { MdOutlineChecklist } from "react-icons/md";
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
+import { MdCases } from "react-icons/md";  
 const TopBar = ({ show, toggle, page, project }) => {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -19,9 +22,10 @@ const TopBar = ({ show, toggle, page, project }) => {
     const [projectTitle, setProjectTitle] = useState("");
     const [saveState, setSaveState] = useState("");
     const [projectDescription, setProjectDescription] = useState("");
+	const theme = useSelector(state => state.theme); 
     useEffect(() => {if (project) {
-        setProjectTitle(project.title)
-        setProjectDescription(project.description)
+        setProjectTitle(project.title) 
+        setProjectDescription(project.description) 
     }}, [])
 
     const executeDelete = async(e) => {
@@ -79,15 +83,73 @@ const TopBar = ({ show, toggle, page, project }) => {
 			<div
 				className={`openboard-topbar ${page === "home" ? headerStyle : null}`}
 			>
-				<div className={toggleButtonClassName}>
+				<div className={toggleButtonClassName}> 
 					<div id="topbar-toggle-button-div" onClick={toggle}>
 						<MdMenu size="1.5em" />
 					</div>
 				</div>
-				<h1 id="top-bar-title">Home</h1>
+				<h1 id="top-bar-title">{theme === 'usa' ? 'Home' : 'Domicile'}</h1>
+			</div>
+		);
+	} 
+	if (project.type === 1) {
+		return (
+			<div
+				className={`openboard-topbar-project`}
+			>
+								<div className={toggleButtonClassName}>
+						<div id="topbar-toggle-button-div" onClick={toggle}>
+							<MdMenu size="1.5em" />
+						</div>
+					</div>
+					<div id="top-bar-project-icon-container">
+						<div id='top-bar-project-icon'>
+						<MdCases size="1.6em"/></div> 
+						</div> 
+					<h1 id="top-bar-title-project">{theme === 'usa' ? 'Inventory' : 'Inventaire'}</h1> 
 			</div>
 		);
 	}
+
+	if (project.type === 2) { 
+		return (
+			<div
+				className={`openboard-topbar-project`}
+			>
+								<div className={toggleButtonClassName}>
+						<div id="topbar-toggle-button-div" onClick={toggle}>
+							<MdMenu size="1.5em" />
+						</div>
+					</div>
+					<div id="top-bar-project-icon-container">
+						<div id='top-bar-project-icon'>
+						<AiOutlineUsergroupAdd size="1.6em"/></div>
+						</div> 
+					<h1 id="top-bar-title-project">{theme === 'usa' ? 'Employees' : 'Employés'}</h1> 
+			</div>
+		);
+	}
+
+	if (project.type === 3) {
+		return (
+			<div
+				className={`openboard-topbar-project`}
+			>
+								<div className={toggleButtonClassName}>
+						<div id="topbar-toggle-button-div" onClick={toggle}>
+							<MdMenu size="1.5em" />
+						</div>
+					</div>
+					<div id="top-bar-project-icon-container">
+						<div id='top-bar-project-icon'>
+						<MdOutlineChecklist size="1.6em"/></div>
+						</div> 
+					<h1 id="top-bar-title-project">{theme === 'usa' ? 'To Do' : 'Liste'}</h1>  
+			</div>
+		);
+	}
+
+
 	if (page === "single-project") {
 		return (
 			<>
@@ -118,22 +180,22 @@ const TopBar = ({ show, toggle, page, project }) => {
 					<div style={{height:"50px", padding:"0px 20px"}}>{saveState}</div>
 				</Modal>
 				<Modal
-					title={`Delete the "${project.title}" project?`}
+					title={theme === 'usa' ? `Delete this project?` : 'Supprimer ce projet ?'} 
 					onClose={() => setShowDeleteModal(false)}
 					show={showDeleteModal}
                     height={200}
 				>
-					<div style={{ padding: "20px 20px" }}>
+					<div style={{ padding: "20px 20px" }}>  
 						<p>
-							This will delete the project, along with any associated tasks.
+						{theme === 'usa' ? 'This will delete the project, along with any associated tasks.' : 'Cela supprimera le projet, ainsi que toutes les tâches associées.'}  
 						</p>
 					</div>
 					<div id="modal-button-container">
 						<button id="modal-button-cancel" onClick={() => setShowDeleteModal(false)}>
-							Cancel
+						{theme === 'usa' ? 'Cancel' : 'Annuler'} 
 						</button>
 						<button id="modal-button-delete" onClick={executeDelete}>
-							Delete
+						{theme === 'usa' ? 'Delete' : 'Effacer'}  
 						</button>
 					</div>
 				</Modal>
@@ -146,8 +208,9 @@ const TopBar = ({ show, toggle, page, project }) => {
 					<div id="top-bar-project-icon-container">
 						<div id='top-bar-project-icon'>
 						<AiOutlineProject size="1.6em"/></div>
-					</div>
+						</div> 
 					<h1 id="top-bar-title-project">{projectTitle}</h1>
+
 					<div
 						id={
 							showProjectDetails
@@ -161,19 +224,20 @@ const TopBar = ({ show, toggle, page, project }) => {
 							<div className="top-bar-project-details-options">
 								<div
 									id="top-bar-project-detail-single-option"
-									onClick={() => setShowProjectDetailsModal(true)}
+									onClick={() => setShowProjectDetailsModal(true)} 
 								>
-									<MdModeEdit /> <span>Edit project details</span>
+									<MdModeEdit /> <span>{theme === 'usa' ? 'Edit project details' : 'Modifier les détails'}</span>
 								</div>  
 								<div
 									id="top-bar-project-detail-single-option"
 									onClick={() => setShowDeleteModal(true)}
 								>
-									<span style={{ color: "#FF0000" }}>Delete project</span> 
+									<TiDelete className='delettopdrop'/> <span style={{ color: "#FF0000" }}>{theme === 'usa' ? 'Delete project' : 'Supprimer le projet'}</span> 
 								</div>
 							</div>
 						) : null}
-					</div>
+					</div> 
+
 				</div>
 			</>
 		);
