@@ -44,6 +44,20 @@ const HomePage = () => {
 		"November",
 		"December",
 	];
+	const FRmonths = [
+		"Janvier",
+		"Février",
+		"Mars",
+		"Avril",
+		"Mai",
+		"Juin",
+		"Juillet",
+		"Aout",
+		"Septembre",
+		"Octobre",
+		"Novembre",
+		"Décembre",
+	];
 	const weekDays = [
 		"Sunday",
 		"Monday",
@@ -53,8 +67,19 @@ const HomePage = () => {
 		"Friday",
 		"Saturday",
 	];
+	const FRweekDays = [
+		"Dimanche",
+		"Lundi",
+		"Mardi",
+		"Mercredi",
+		"Jeudi",
+		"Vendredi",
+		"Samedi",
+	];
 	const currentDay = weekDays[currentDate.getDay()];
 	const currentMonth = months[currentDate.getMonth()];
+	const currentDayFR = FRweekDays[currentDate.getDay()]; 
+	const currentMonthFR = FRmonths[currentDate.getMonth()];
 	const currentNumberDay = currentDate.getDate();
 
 	const updateContent = (e) => {
@@ -84,13 +109,13 @@ const HomePage = () => {
 				didMount.current = true;
 			}
 		}, 1000);
-
+// {`${currentDay}, ${currentMonth} ${currentNumberDay}`} 
 		return () => clearTimeout(delayDebounceFn);
 	}, [content]);
 	return (
 		<div className="homepage-main"> 
-			<div className="homepage-content">
-				<h5 id="homepage-date">{`${currentDay}, ${currentMonth} ${currentNumberDay}`}</h5>
+			<div className="homepage-content"> 
+				<h5 id="homepage-date">{theme === 'usa' ? currentDay : currentDayFR}, {theme === 'usa' ? currentMonth : currentMonthFR} {currentNumberDay} </h5>
 				<h2 id="homepage-greeting">{theme === 'usa' ? 'Welcome,' : 'Bienvenue, '} {user.fullname}</h2>
 				<div className="homepage-content-widgets">
 					<div className="homepage-content-widgets-sort">

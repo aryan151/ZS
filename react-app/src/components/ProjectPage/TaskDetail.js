@@ -314,12 +314,17 @@ const TaskDetail = ({ show, task, projectId, projecttype }) => {
 											: "task-detail-toolbar-complete-button"
 									}
 								>
-									{projecttype === 0 ? <><MdDone /> {task.completed ? "Completed" : "Mark Complete"} </>: null} 
-									{projecttype === 1 ? <><MdDone /> {task.completed ? "Checked" : "Need to Check"} </>: null} 
-									{projecttype === 2 ? <><MdDone /> {task.completed ? "Online" : "Offline"} </>: null} 
-									{projecttype === 3 ? <><MdDone /> {task.completed ? "Completed" : "Mark Complete"} </>: null} 
+									{projecttype === 0  && theme === 'usa' ? <><MdDone /> {task.completed ? "Completed" : "Mark Complete"} </>: null} 
+									{projecttype === 1  && theme === 'usa'? <><MdDone /> {task.completed ? "Checked" : "Need to Check"} </>: null} 
+									{projecttype === 2 && theme === 'usa' ? <><MdDone /> {task.completed ? "Online" : "Offline"} </>: null} 
+									{projecttype === 3 && theme === 'usa'? <><MdDone /> {task.completed ? "Completed" : "Mark Complete"} </>: null} 
+
+									{projecttype === 0  && theme === 'eur' ? <><MdDone /> {task.completed ? "Complété" : "Incomplet"} </>: null} 
+									{projecttype === 1  && theme === 'eur'? <><MdDone /> {task.completed ? "Vérifié" : "Besoin de vérifier"} </>: null} 
+									{projecttype === 2 && theme === 'eur' ? <><MdDone /> {task.completed ? "En ligne" : "Hors ligne"} </>: null} 
+									{projecttype === 3 && theme === 'eur'? <><MdDone /> {task.completed ? "Complété" : "Incomplet"} </>: null}  
 								</button>{" "}
-								<div style={{ marginLeft: "10px" }}>
+								<div style={{ marginLeft: "10px" }}>  
 									<p>{saveState}</p>
 								</div>
 							</div>
@@ -330,7 +335,7 @@ const TaskDetail = ({ show, task, projectId, projecttype }) => {
 										id="task-detail-toolbar-delete"
 										onClick={executeDeleteTask}
 									>
-										Delete
+										{theme === 'usa' ? "Delete" : `Effacer`} 
 									</button>
 								</div>
 								<div
@@ -542,14 +547,14 @@ const TaskDetail = ({ show, task, projectId, projecttype }) => {
 									</div>
 								</div>
 								<div className="task-detail-fields-row">
-									<div id="task-detail-row-label">{theme === 'usa' ? 'Priority' : 'Priorité'}</div>
-									<div id="task-detail-row-content">
+									<div id="task-detail-row-label">{theme === 'usa' ? 'Amount' : 'la quantité'}</div>
+									<div id="task-detail-row-content"> 
 										<select value={status} onChange={handleStatusChange}> 
 											<option value="null">---</option>
-											<option value="On Track">{theme === 'usa' ? 'Priority' : 'Priorité'}</option>
-											<option value="At Risk">{theme === 'usa' ? 'Priority' : 'Priorité'}</option>
-											<option value="Off Track">{theme === 'usa' ? 'Priority' : 'Priorité'}</option>
-										</select>
+											<option value="On Track">{theme === 'usa' ? 'Low' : 'limité'}</option>
+											<option value="At Risk">{theme === 'usa' ? 'Normal' : 'normal'}</option>
+											<option value="Off Track">{theme === 'usa' ? 'Excess' : `l' excès`}</option>
+										</select> 
 									</div>
 								</div>
 								</> : null }
@@ -643,7 +648,7 @@ const TaskDetail = ({ show, task, projectId, projecttype }) => {
 								onClick={submitComment}
 								disabled={comment === ""}
 							>
-								Comment
+								{theme === 'usa' ? 'Comment' : `observation`} 
 							</button>
 						</div>
 					) : null}
