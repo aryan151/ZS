@@ -5,7 +5,7 @@
   border-bottom-right-radius: 50%;
   border-top-right-radius: 50%;
   border-top-left-radius: 50%;
-  background-color: #4573D0;
+  background-color: red;
   display: inline-block;
   margin-left: -1px;
   box-sizing: border-box;
@@ -28,7 +28,7 @@
   border-bottom-right-radius: 50%;
   border-top-right-radius: 50%;
   border-top-left-radius: 50%;
-  background-color: #4573D0;
+  background-color: red; 
   display: inline-block;
   margin-right: 5px;
   margin-top: 1px;

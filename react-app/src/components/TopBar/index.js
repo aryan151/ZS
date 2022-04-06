@@ -63,7 +63,7 @@ const TopBar = ({ show, toggle, page, project }) => {
 						};
 
 						await dispatch(saveProject(payload));
-						setSaveState("All changes saved");
+						(theme === 'usa') ?setSaveState("All changes saved") : setSaveState('Toutes les modifications enregistrées');  
 						await dispatch(authenticate());
 						setTimeout(() => {
 							setSaveState("");

@@ -9,6 +9,17 @@
 	width: 240px;
 	height: 100%;
 }
+.sidebar-openlight {
+	display: flex;
+	font-family: "Montserrat-Medium";
+	flex: 0 0 auto;
+	flex-direction: column;
+	background-color: white;
+	color: black;
+	transition: margin-left 250ms ease-out, transform 250ms ease-out;
+	width: 240px;
+	height: 100%;
+}
 .sidebar-closed {
 	margin-left: -240px;
 	background-color: #1e1f21;
@@ -29,6 +40,11 @@
 .sidebarlogotopleft {
 	color: #FF0000;
 }
+.sidebarlogotopleftlight {
+	color: blue;
+}
+
+
 #sidebar-header-logo {
 	width: 150px;
 	padding-left: 24px;

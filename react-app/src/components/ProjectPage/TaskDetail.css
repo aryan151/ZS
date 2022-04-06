@@ -308,7 +308,7 @@
     background-color: white;
 }
 #comment-submit-button{
-    background-color: #4573D1;
+    background-color:red;
     border:none;
     border-radius: 5px;
     width: 90px;
@@ -333,7 +333,7 @@
     background-color: #F9F8F8;
 }
 #comment-edit-button{
-    background-color: #4573D1;
+    background-color: red; 
     border:none;
     border-radius: 5px;
     width: 110px;
@@ -344,11 +344,11 @@
 }
 #comment-edit-button:hover{
     cursor: pointer;
-    background-color: #3365c9;
+    background-color: black;
 }
 #comment-submit-button:hover{
-    cursor: pointer;
-    background-color: #3365c9;
+    cursor: pointer; 
+    background-color: black;
 }
 #comment-toolbar{
     width: 100%;

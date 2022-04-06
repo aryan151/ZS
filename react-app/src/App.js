@@ -10,17 +10,20 @@ import Splash from "./components/Splash/Splash";
 import { authenticate } from "./store/session";
 import RootPage from "./components/RootPage";
 import { setTheme } from "./store/theme";
- 
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
 	const [showSidebar, setShowSidebar] = useState();
+	const [showDark, setShowDark] = useState();
 	const theme = useSelector(state => state.theme); 
 	const toggleSidebar = () => {
 		setShowSidebar(!showSidebar);
 		localStorage.setItem('sidebar', !showSidebar)
 	}
-
+	const toggleDark = () => {
+		setShowDark(!showDark); 
+		localStorage.setItem('dark', !showDark) 
+	}
 	const sessionUser = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
 
@@ -30,6 +33,7 @@ function App() {
 		(async () => {
 			await dispatch(authenticate());
 			dispatch(setTheme())
+			localStorage.setItem("dark", true);  
 		
 			if (!localStorage.getItem("sidebar")) {
 				localStorage.setItem("sidebar", true);
@@ -63,7 +67,7 @@ function App() {
 					{!sessionUser && <Splash />}
 					{sessionUser && (
 						<div className="openboard-main-layer">
-							<SideBar show={showSidebar} toggle={toggleSidebar} />
+							<SideBar show={showSidebar} toggle={toggleSidebar} toggledark={toggleDark} />
 							<RootPage show={showSidebar} toggle={toggleSidebar} page="home"/>
 						</div>
 					)}

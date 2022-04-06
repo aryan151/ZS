@@ -18,17 +18,21 @@ import { AiOutlineProject } from "react-icons/ai";
 import { Switch } from "react-switch"; 
 import {toggleTheme} from '../../store/theme'
 import { AiOutlineDollarCircle } from "react-icons/ai";
-const SideBar = ({ show, toggle }) => {
+import { SiBankofamerica } from "react-icons/si"
+import { GiEuropeanFlag } from "react-icons/gi";
+import { IoLogOutOutline } from "react-icons/io5";
+
+const SideBar = ({ show, toggle, toggledark }) => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.session.user); 
 	const user_projects = user.projects;
-	const sidebarClass = show ? "sidebar-open" : "sidebar-closed"; 
+	let sidebarClass = show ? "sidebar-open" : "sidebar-closed";  
 	const theme = useSelector(state => state.theme); 
 	const [currentTheme, setCurrentTheme] = useState(theme); 
 	const onlyprojects = []
 	const inventory = []
 	const workers = [] 
-	const toDo = [] 
+	const toDo = []  
 
 	function handleToggle() {
 		dispatch(toggleTheme());
@@ -52,33 +56,33 @@ const SideBar = ({ show, toggle }) => {
 		}   
 	} 
 	return (
-		<nav className={sidebarClass}>
-			
+		<nav className={sidebarClass}> 
+			 
 			<div className="sidebar-header">
 				<p id="sidebar-header-logo">{theme === 'usa' ? 'Navigation' : 'La Navigation'}</p> 
 				<div id="sidebar-toggle-button" onClick={toggle}>  
 					<MdMenuOpen size="2em" />
 				</div>
 			</div>
-			<div className="sidebar-links-section">
-				<NavLink to="/" exact={true} activeClassName="sidebar-active"> 
+			<div className="sidebar-links-section"> 
+				<NavLink to="/" exact={true} activeClassName="sidebar-active">  
 					<div id="sidebar-link">
-						<RiHome6Line size="1.5em" className='sidebarlogotopleft' /> <span id="sidebar-link-text">{theme === 'usa' ? 'Home' : 'Domicile'}</span> 
+						<RiHome6Line size="1.5em" className={'sidebarlogotopleft'} /> <span id="sidebar-link-text">{theme === 'usa' ? 'Home' : 'Domicile'}</span> 
 					</div>
 				</NavLink>
 				<NavLink to={`/projects/${toDo[0]}`} exact={true} activeClassName="sidebar-active"> 
 					<div id="sidebar-link">
-						<MdOutlineChecklist size="1.5em"  className='sidebarlogotopleft'/> <span id="sidebar-link-text">{theme === 'usa' ? 'To Do' : 'Liste'}</span> 
+						<MdOutlineChecklist size="1.5em"  className={'sidebarlogotopleft'}/> <span id="sidebar-link-text">{theme === 'usa' ? 'To Do' : 'Liste'}</span> 
 					</div>
 				</NavLink> 
                 <NavLink to={`/projects/${inventory[0]}`} exact={true} activeClassName="sidebar-active">
 					<div id="sidebar-link">
-						<MdCases size="1.5em" className='sidebarlogotopleft'/> <span id="sidebar-link-text">{theme === 'usa' ? 'Inventory' : 'Inventaire'}</span>  
+						<MdCases size="1.5em"  className={'sidebarlogotopleft'}/> <span id="sidebar-link-text">{theme === 'usa' ? 'Inventory' : 'Inventaire'}</span>  
 					</div>
 				</NavLink> 
                 <NavLink to={`/projects/${workers[0]}`} exact={true} activeClassName="sidebar-active"> 
 					<div id="sidebar-link">
-						<AiOutlineUsergroupAdd  size="1.5em" className='sidebarlogotopleft' /> <span id="sidebar-link-text">{theme === 'usa' ? 'Employees' : 'Employés'}</span> 
+						<AiOutlineUsergroupAdd size="1.5em"    className={'sidebarlogotopleft'} /> <span id="sidebar-link-text">{theme === 'usa' ? 'Employees' : 'Employés'}</span> 
 					</div>  
 				</NavLink> 
 			</div>
@@ -112,18 +116,16 @@ const SideBar = ({ show, toggle }) => {
 			<div className="sidebar-links-section">
 				<div activeClassName="sidebar-active"> 
 					<div id="sidebar-link"   onClick={handleToggle}> 
-						<RiHome6Line size="1.5em" className='sidebarlogotopleft' /> <span id="sidebar-link-text">{theme === 'usa' ? 'Français' : 'English'}  </span> 
-					</div> 
+					{theme === 'usa' ? <> <GiEuropeanFlag size="1.5em"  className={'sidebarlogotopleft'} /> <span id="sidebar-link-text">Français</span> </> : 
+					<><SiBankofamerica size="1.5em"  className={'sidebarlogotopleft'} /> <span id="sidebar-link-text">English</span> </> } 
+					</div>  
 				</div>
 				<div activeClassName="sidebar-active"> 
-					<div id="sidebar-link">
-						<MdOutlineChecklist size="1.5em"  className='sidebarlogotopleft'/> <span id="sidebar-link-text">{theme === 'usa' ? 'To Do' : 'Liste'}</span> 
-					</div>
-				</div> 
+					<div id="sidebar-link"  > 
+						<IoLogOutOutline size="1.5em"  className={'sidebarlogotopleft'} /> <span id="sidebar-link-text">{theme === 'usa' ? 'Logout' : 'Déconnexion'}  </span> 
+					</div> 
+				</div>
 			</div> 
-			<div className="sidebar-log-out">
-				<LogoutButton />
-			</div>
 		</nav>  
 	);
 };

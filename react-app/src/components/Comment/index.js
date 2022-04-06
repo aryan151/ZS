@@ -1,13 +1,15 @@
 import InitialsAvatar from "../InitialsAvatar";
 import { MdExpandMore } from "react-icons/md";
 import { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateTaskComment, getProject , deleteComment} from "../../store/project";
 import TextareaAutoSize from "react-textarea-autosize";
 const Comment = ({ comment, currentUser, projectId, updateComments, lastComment }) => {
+
+	
     const dispatch = useDispatch();
-	const [showCommentActionsButton, setShowCommentActionsButton] =
-		useState(false);
+	const theme = useSelector(state => state.theme);  
+	const [showCommentActionsButton, setShowCommentActionsButton] =useState(false);
 	const [showCommentActions, setShowCommentActions] = useState(false);
 	const [editCommentForm, setEditCommentForm] = useState(false);
 	const [commentText, setCommentText] = useState(comment.comment);
@@ -88,11 +90,11 @@ const Comment = ({ comment, currentUser, projectId, updateComments, lastComment 
 											setShowCommentActions(false);
 										}}
 									>
-										<span>Edit comment</span>
+										<span>{theme === 'usa' ? 'Edit' : 'Éditer'}</span>
 									</div>
 									<div id="comment-single-action" onClick={removeComment}>
-										<span style={{ color: "#F06A6F" }}>Delete comment</span>
-									</div>
+										<span style={{ color: "#F06A6F" }}>{theme === 'usa' ? 'Delete' : 'Effacer'}</span>
+									</div>  
 								</div>
 							) : null}
 						</div>
@@ -119,10 +121,10 @@ const Comment = ({ comment, currentUser, projectId, updateComments, lastComment 
 									}}
 									style={{ marginRight: 10 }}
 								>
-									Cancel
+									{theme === 'usa' ? 'Cancel' : 'Annuler'}
 								</button>
 								<button id="comment-edit-button" disabled={commentText === ""} onClick={() => updateComment(comment.id,commentText)}>
-									Save Changes
+								{theme === 'usa' ? 'Save' : 'Sauvegarder'}  
 								</button>
 							</div>
 						</>

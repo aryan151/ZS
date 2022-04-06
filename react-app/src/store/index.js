@@ -4,14 +4,14 @@ import session from './session'
 import project from "./project"
 import priorities from "./priorities"
 import subtasksReducer from './subtask';
-import themeReducer from './theme';
+import themeReducer from './theme'; 
 
 const rootReducer = combineReducers({
   session,
   project,
   priorities,
   subtasks: subtasksReducer,
-  theme: themeReducer, 
+  theme: themeReducer,
 });
 
 

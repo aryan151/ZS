@@ -78,12 +78,12 @@ const HomePage = () => {
 	];
 	const currentDay = weekDays[currentDate.getDay()];
 	const currentMonth = months[currentDate.getMonth()];
-	const currentDayFR = FRweekDays[currentDate.getDay()]; 
+	const currentDayFR = FRweekDays[currentDate.getDay()];  
 	const currentMonthFR = FRmonths[currentDate.getMonth()];
 	const currentNumberDay = currentDate.getDate();
 
 	const updateContent = (e) => {
-		setSaveState("Saving..."); 
+		(theme === 'usa') ?setSaveState("Saving...") : setSaveState(`l' enregistrement`);
 		setContent(e.target.value);
 	};
 	useEffect(async () => {
@@ -96,20 +96,19 @@ const HomePage = () => {
 			if (didMount.current) {
 				const payload = {
 					userId: user.id,
-					notepad: content,
+					notepad: content, 
 				};
 
 
 				await dispatch(saveNotepad(payload));
-				setSaveState("All changes saved");
+				(theme === 'usa') ?setSaveState("All changes saved") : setSaveState('Toutes les modifications enregistrées'); 
 				setTimeout(() => {
 					setSaveState("");
 				}, 1000);
 			} else {
 				didMount.current = true;
 			}
-		}, 1000);
-// {`${currentDay}, ${currentMonth} ${currentNumberDay}`} 
+		}, 1000); 
 		return () => clearTimeout(delayDebounceFn);
 	}, [content]);
 	return (
