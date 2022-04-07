@@ -589,9 +589,9 @@ const TaskDetail = ({ show, task, projectId, projecttype }) => {
 									<TextareaAutosize
 										id="description-textarea"
 										type="text" 
-										placeholder={theme === 'usa' ? '"Add additional info..."' : 'Ajouter des informations supplémentaires										'}
+										placeholder={theme === 'usa' ? 'Add additional info...' : 'Ajouter des informations supplémentaires										'}
 										value={description}
-										onChange={handleDescriptionChange}
+										onChange={handleDescriptionChange} 
 									/>
 								</div>  
 							</div>
