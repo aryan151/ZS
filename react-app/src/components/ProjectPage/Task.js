@@ -100,13 +100,13 @@ const Task = ({task, index, projectId, projecttype}) => {
 										{(projecttype === 0  || projecttype === 3) && task.status === 'On Track' ? <>{theme === 'usa' ? 'On Track' : 'Sur la bonne voie'} </> : null }
 										{(projecttype === 0  || projecttype === 3) && task.status === 'At Risk' ? <>{theme === 'usa' ? 'At Risk' : 'à risque'} </> : null }
 										{(projecttype === 0  || projecttype === 3) && task.status === 'Off Track' ? <>{theme === 'usa' ? 'Off Track' : 'Hors route'} </> : null }
-										{(projecttype === 1) && task.priority === 'Low' ? <>{theme === 'usa' ? 'Low' : 'limité'} </> : null }
-										{(projecttype === 1) && task.priority === 'Medium' ? <>{theme === 'usa' ? 'Normal' : 'Normal'} </> : null }
-										{(projecttype === 1) && task.priority === 'High' ? <>{theme === 'usa' ? 'Excess' : `l' excès`} </> : null }
-										{(projecttype === 2) && task.priority === 'Low' ? <>{theme === 'usa' ? 'Full Time' : 'à plein temps'} </> : null }
-										{(projecttype === 2) && task.priority === 'Medium' ? <>{theme === 'usa' ? 'Part Time' : 'à temps partiel'} </> : null }
-										{(projecttype === 2) && task.priority === 'High' ? <>{theme === 'usa' ? 'Contract' : 'Contracter'} </> : null }
-									
+										{(projecttype === 1) && task.status === 'On Track' ? <>{theme === 'usa' ? 'Low' : 'limité'} </> : null }
+										{(projecttype === 1) && task.status === 'At Risk' ? <>{theme === 'usa' ? 'Normal' : 'Normal'} </> : null }
+										{(projecttype === 1) && task.status === 'Off Track' ? <>{theme === 'usa' ? 'Excess' : `l' excès`} </> : null }
+										{(projecttype === 2) && task.status === 'On Track' ? <>{theme === 'usa' ? 'Full Time' : 'à plein temps'} </> : null }
+										{(projecttype === 2) && task.status === 'At Risk' ? <>{theme === 'usa' ? 'Part Time' : 'à temps partiel'} </> : null }
+										{(projecttype === 2) && task.status === 'Off Track' ? <>{theme === 'usa' ? 'Contract' : 'Contracter'} </> : null }
+									 
 									</div>
 								) : null} 
 							</div>
