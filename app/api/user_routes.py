@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from sqlalchemy.orm import load_only
-from app.models import User, db, Task
+from app.models import User, db, Task, Project, Section 
 from operator import itemgetter
 
 from datetime import datetime

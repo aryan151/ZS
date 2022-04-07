@@ -55,13 +55,21 @@ def createProject():
     section4 = Section(
         project_id=project.id,
         board_column=3,
-        title='Closed',
+        title='Complete',
         created_at=today,
-        updated_at=today)
+        updated_at=today) 
+    section5 = Section(
+        project_id=project.id,
+        board_column=4,
+        title='Canceled',
+        created_at=today,
+        updated_at=today)  
+
     db.session.add(section1)
     db.session.add(section2)
     db.session.add(section3)
     db.session.add(section4)
+    db.session.add(section5)    
 
     project.project_members.append(user)
 

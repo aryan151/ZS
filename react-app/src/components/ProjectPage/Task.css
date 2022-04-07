@@ -3,7 +3,7 @@
 	display: flex;
 	flex-direction: column;
 	border: none;
-	box-shadow: 0 0 0 1px #edeae9;
+	box-shadow: 0 0 0 1px black;
 	border-radius: 10px;
 	flex-basis: 100px;
 	margin: 5px 0px 5px 0px;
@@ -126,8 +126,8 @@
 	text-align: left;
 	white-space: nowrap;
 }
-#priority-Medium{
-    background-color: #f1bd6c;
+#priority-Medium{ 
+    background-color: #f1bd6c; 
     color:black;
 }
 #priority-Low{
