@@ -127,27 +127,27 @@
 	white-space: nowrap;
 }
 #priority-Medium{ 
-    background-color: #f1bd6c; 
+    background-color: lightskyblue	; 
     color:black;
 }
 #priority-Low{
     background-color: #9ee7e3;
     color: black;
 }
-#priority-High {
-	background-color: #b36bd4;
+#priority-High { 
+	background-color: #b36bd4; 
 	color: white;
 }
 .status-At{
-    background-color: #f8df72;
+    background-color: lightsalmon; 
     color:black;
 }
 .status-Off{
-    background-color: #f06a6a;
+    background-color: lightpink; 
     color: black;
 }
 .status-On{
-    background-color: #4ecbc4;
+    background-color: limegreen;
     color: black;
 }
 #new-task-input{

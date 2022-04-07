@@ -9,15 +9,15 @@
     position: relative;
     flex: 0 0 304px; 
     width: 304px;  
-    margin-right: 10px;
-    
+    margin-right: 15px;
+    box-shadow: 0 0 0 1px black;
 }
 .board-section-title svg{
     margin: 3px;
 }
 .board-section:hover{
     /* box-shadow: 0 0 0 1px #edeae9; */
-    box-shadow: 0 0 0 1px black;
+    box-shadow: 0 0 0 1px white; 
 }
 .board-section-title{
     display: flex;
@@ -32,6 +32,8 @@
     color: black;
     margin-right: auto; 
 }
+
+
 .board-section-tasks{
     scroll-padding-bottom: 24px;
     scroll-padding-top: 24px;
