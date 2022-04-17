@@ -438,9 +438,9 @@ const TaskDetail = ({ show, task, projectId, projecttype }) => {
 																	<IoIosCloseCircle size="1.3em" />
 																</div>
 															) : null}
-														</>
+														</> 
 													) : (
-														"No assignee"
+														<>{theme === 'usa' ? 'No assignee' : `Aucun cessionnaire`}</> 
 													)}
 												</div>
 											</>
@@ -503,7 +503,7 @@ const TaskDetail = ({ show, task, projectId, projecttype }) => {
 														) : null}
 													</>
 												) : (
-													"No due date"
+													<>{theme === 'usa' ? 'No due date' : `Pas de date d'échéance`}</> 
 												)}
 											</div>
 										)}
