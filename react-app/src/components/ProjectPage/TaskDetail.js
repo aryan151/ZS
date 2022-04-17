@@ -440,7 +440,7 @@ const TaskDetail = ({ show, task, projectId, projecttype }) => {
 															) : null}
 														</> 
 													) : (
-														<>{theme === 'usa' ? 'No assignee' : `Aucun cessionnaire`}</> 
+														<>{theme === 'usa' ? 'No assignee' : `Aucun Cessionnaire`}</> 
 													)}
 												</div>
 											</>

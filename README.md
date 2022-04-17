@@ -4,7 +4,7 @@
     <img src="https://logos-world.net/wp-content/uploads/2021/02/Asana-Symbol.png" alt="Logo" width="150" height="150">
   </a> 
 
-  <h3 align="center">Z.S</h3>
+  <h3 align="center">Z.S</h3> 
 
   <p align="center">
     <a href="https://zandes.herokuapp.com/" target="_blank"><strong>Explore the website »</strong></a>
